@@ -36,12 +36,20 @@ public class Machine {
 		this.status = status;
 	}
 
-	public void addConnection (int id, Machine m) {
+	public void connect (int id, Machine m) {
 		connection.Add (id, m);
 	}
 
-	public void removeConnection (int id) {
+	public void disconnect (int id) {
 		connection.Remove (id);
+	}
+
+	public void beConnected () {
+		
+	}
+
+	public void beDisconnected () {
+		
 	}
 
 }
