@@ -10,7 +10,7 @@ public class Machine : MonoBehaviour {
     public int Id;
     public string MachineName;
 
-    private Dictionary<int, Machine> Connection = new Dictionary<int, Machine>();
+    private Dictionary<int, ConnectionInfo> Connection = new Dictionary<int, ConnectionInfo>();
 
     // Use this for initialization
     void Start() {
@@ -24,9 +24,9 @@ public class Machine : MonoBehaviour {
 		
 	}
 
-    void Connect (GameObject machine) {
+    void Connect (GameObject machine, ConnectionInfo.Relative connectType = ConnectionInfo.Relative.Connect) {
         Machine m = machine.GetComponent<Machine>();
-        Connection.Add(m.Id, m);
+        Connection.Add(m.Id, new ConnectionInfo(m.Id, connectType, m));
         DrawConnectLine(machine);
     }
 
@@ -47,6 +47,8 @@ public class Machine : MonoBehaviour {
     }
 
     private void RemoveConnectLine(GameObject machine) {
-        Destroy(machine.transform.parent.gameObject);
+        GameObject line = machine.transform.parent.gameObject;
+        machine.transform.parent = null;
+        Destroy(line);
     }
 }
