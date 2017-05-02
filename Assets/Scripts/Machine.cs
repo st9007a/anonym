@@ -53,14 +53,15 @@ public class Machine : MonoBehaviour {
 
         line.transform.parent = gameObject.transform;
         line.GetComponent<LineRenderer>().SetPosition(0, gameObject.transform.position);
-        line.GetComponent<LineRenderer>().SetPosition(1, machine.transform.position);
+        line.GetComponent<LineRenderer>().SetPosition(1, Vector3.Lerp(gameObject.transform.position, machine.transform.position, 0.2f));
+        line.GetComponent<LineRenderer>().SetPosition(2, machine.transform.position);
 
-        machine.transform.parent = line.transform;
+        //machine.transform.parent = line.transform;
     }
 
     private void RemoveConnectLine(GameObject machine) {
         GameObject line = machine.transform.parent.gameObject;
-        machine.transform.parent = null;
+        //machine.transform.parent = null;
         Destroy(line);
     }
 }
