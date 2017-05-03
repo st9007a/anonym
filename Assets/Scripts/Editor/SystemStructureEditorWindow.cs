@@ -50,11 +50,10 @@ public class SystemStructureEditorWindow : EditorWindow {
             m.MachineFunc = Function;
 
             Machines.Add(m);
-
         }
+
         GUILayout.EndArea();
         GUILayout.EndVertical();
-
 
         BeginWindows();
         for (int i = 0; i < Windows.Count; i++) {
@@ -65,6 +64,10 @@ public class SystemStructureEditorWindow : EditorWindow {
 
     void WindowFunction(int windowId) {
         GUI.DragWindow();
+
+        if (Event.current.type == EventType.MouseUp) {
+            Debug.Log(windowId);
+        }
     }
 
 }
