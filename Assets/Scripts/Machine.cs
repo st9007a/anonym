@@ -23,7 +23,6 @@ public class Machine : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
 
     void Connect (GameObject machine) {
