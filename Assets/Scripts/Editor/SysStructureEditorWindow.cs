@@ -4,17 +4,14 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
-public class SystemStructureEditorWindow : EditorWindow {
+public class SysStructureEditorWindow : EditorWindow {
 
     string NewMachineName = "";
-    int Display = 0;
-    //string[] DisplayOpt = Enum.GetNames(typeof(MachineInfo.Display));
-
     List<Rect> windows = new List<Rect>();
 
     [MenuItem("Custom/System Structure")]
     static void Init() {
-        GetWindow(typeof(SystemStructureEditorWindow));
+        GetWindow(typeof(SysStructureEditorWindow));
     }
 
     private void OnGUI() {
@@ -29,13 +26,8 @@ public class SystemStructureEditorWindow : EditorWindow {
         NewMachineName = GUILayout.TextField(NewMachineName, 15);
         GUILayout.EndHorizontal();
 
-        //GUILayout.BeginHorizontal();
-       // GUILayout.Label("Display :", GUILayout.Width(50));
-        //Display = EditorGUILayout.Popup(Display, DisplayOpt);
-        //GUILayout.EndHorizontal();
-
         if (GUILayout.Button("Add")) {
-            windows.Add(new Rect(100 + 100, 100, 100, 100));
+            windows.Add(new Rect(200, 100, 100, 100));
         }
         GUILayout.EndArea();
         GUILayout.EndVertical();
