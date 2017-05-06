@@ -34,6 +34,11 @@ public class MachineInfo {
         Name = "Default";
     }
 
+    public MachineInfo(int Id, string Name) {
+        this.Id = Id;
+        this.Name = Name;
+    }
+
     public void AddConnect(MachineInfo m) {
         Connection.Add(m);
     }

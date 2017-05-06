@@ -64,10 +64,6 @@ public class SystemStructureEditorWindow : EditorWindow {
 
     void WindowFunction(int windowId) {
         GUI.DragWindow();
-
-        if (Event.current.type == EventType.MouseUp) {
-            Debug.Log(windowId);
-        }
     }
 
 }
