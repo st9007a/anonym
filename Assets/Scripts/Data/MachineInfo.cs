@@ -28,6 +28,9 @@ public class MachineInfo {
     public Status MachineStatus { set; get; }
     public Function MachineFunc { set; get; }
 
+    public float PosX { set; get; }
+    public float PosZ { set; get; }
+
     public List<MachineInfo> Connection = new List<MachineInfo>();
 
     public MachineInfo() {

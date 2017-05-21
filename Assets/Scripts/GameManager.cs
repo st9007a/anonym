@@ -5,12 +5,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public GameObject MachineTemp;
+    public GameObject Aim;
+
     public List<GameObject> AllMachines { set; get; }
 
-    private SystemStructure SystemInfo;
+    private SystemStructure _systemInfo;
 
     void Awake () {
-        SystemInfo = SystemStructure.CreateDefault();
+        _systemInfo = SystemStructure.CreateDefault();
         AllMachines = new List<GameObject>();
 	}
 
@@ -18,26 +20,32 @@ public class GameManager : MonoBehaviour {
         CreateMachines();
         SetupConnect();
         StartConnect();
+
+        TriggerScene();
     }
 
     // Update is called once per frame
     void Update () {
 	}
 
+    private void TriggerScene() {
+        Instantiate(Aim);
+    }
+
     private void CreateMachines() {
-        int count = SystemInfo.Machines.Count;
+        int count = _systemInfo.Machines.Count;
         for (int i = 0; i < count; i++)
         {
             GameObject machine = Instantiate(MachineTemp);
-            machine.transform.position = new Vector3(Mathf.Cos(Mathf.Deg2Rad * 360 * i / count) * 3, 0, Mathf.Sin(Mathf.Deg2Rad * 360 * i / count) * 3);
-            machine.GetComponent<Machine>().Info = SystemInfo.Machines[i];
+            machine.transform.position = new Vector3(_systemInfo.Machines[i].PosX, 0, _systemInfo.Machines[i].PosZ);
+            machine.GetComponent<Machine>().Info = _systemInfo.Machines[i];
             machine.GetComponent<Machine>().Init();
             AllMachines.Add(machine);
         }
     }
 
     private void SetupConnect() {
-        int count = SystemInfo.Machines.Count;
+        int count = _systemInfo.Machines.Count;
         
         for (int i = 0; i < count; i++)
         {
@@ -53,7 +61,7 @@ public class GameManager : MonoBehaviour {
     }
 
     private void StartConnect() {
-        int count = SystemInfo.Machines.Count;
+        int count = _systemInfo.Machines.Count;
         for (int i = 0; i < count; i++)
         {
             AllMachines[i].GetComponent<Machine>().StartConnect();

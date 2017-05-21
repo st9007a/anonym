@@ -4,29 +4,28 @@ using UnityEngine;
 
 public class AutoRotate : MonoBehaviour {
 
-    public float Speed = 120.0f;
+    public float InitialSpeed = 120.0f;
     public Vector3 Axis;
 
-    private Vector3 rotate;
-    private float speed;
+    private float _speed;
 
     void Start() {
-        speed = Speed;
+        _speed = InitialSpeed;
     }
 
     void Update () {
-        transform.Rotate(Axis * Time.deltaTime * speed);
+        transform.Rotate(Axis * Time.deltaTime * _speed);
 	}
 
     public void StopRotate() {
-        speed = 0;
+        _speed = 0;
     }
 
     public void setSpeed(float speed) {
-        this.speed = speed;
+        _speed = speed;
     }
 
     public void ResetRotate() {
-        speed = Speed;
+        _speed = InitialSpeed;
     }
 }
