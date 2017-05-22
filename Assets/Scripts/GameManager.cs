@@ -67,4 +67,5 @@ public class GameManager : MonoBehaviour {
             AllMachines[i].GetComponent<Machine>().StartConnect();
         }
     }
+
 }
