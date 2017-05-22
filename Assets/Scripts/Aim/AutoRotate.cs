@@ -5,8 +5,6 @@ using UnityEngine;
 public class AutoRotate : MonoBehaviour {
 
     public float InitialSpeed = 120.0f;
-    public Vector3 Axis;
-
     private float _speed;
 
     void Start() {
@@ -14,7 +12,7 @@ public class AutoRotate : MonoBehaviour {
     }
 
     void Update () {
-        transform.Rotate(Axis * Time.deltaTime * _speed);
+        transform.Rotate(new Vector3(0, 0, 1) * Time.deltaTime * _speed);
 	}
 
     public void StopRotate() {
