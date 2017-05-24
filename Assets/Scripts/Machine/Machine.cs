@@ -33,8 +33,10 @@ public class Machine : MonoBehaviour {
     }
 
     public void StartConnect() {
+        //Debug.Log("m: " + Info.Id);
         for (int i = 0; i < ConnectMachines.Count; i++) {
             Connect(ConnectMachines[i]);
+            //Debug.Log("c: " + ConnectMachines[i].GetComponent<Machine>().Info.Id);
         }
         
     }
@@ -45,16 +47,16 @@ public class Machine : MonoBehaviour {
         switch (Info.MachineFunc)
         {
             case MachineInfo.Function.Connect:
-                ConnectLine = Resources.Load("Prefabs/ConnectLine") as GameObject;
+                ConnectLine = Resources.Load("Prefabs/Ray/ConnectRay") as GameObject;
                 break;
             case MachineInfo.Function.Defense:
-                ConnectLine = Resources.Load("Prefabs/DefenseLine") as GameObject;
+                ConnectLine = Resources.Load("Prefabs/Ray/DefenseRay") as GameObject;
                 break;
             case MachineInfo.Function.Power:
-                ConnectLine = Resources.Load("Prefabs/PowerLine") as GameObject;
+                ConnectLine = Resources.Load("Prefabs/Ray/PowerRay") as GameObject;
                 break;
             default:
-                ConnectLine = Resources.Load("Prefabs/ConnectLine") as GameObject;
+                ConnectLine = Resources.Load("Prefabs/Ray/ConnectRay") as GameObject;
                 break;
         }
     }
@@ -68,14 +70,20 @@ public class Machine : MonoBehaviour {
     }
 
     private void DrawConnectLine(GameObject machine) {
+        /*
         GameObject line = Instantiate(ConnectLine);
 
         line.transform.parent = gameObject.transform;
         line.GetComponent<LineRenderer>().SetPosition(0, gameObject.transform.position);
         line.GetComponent<LineRenderer>().SetPosition(1, Vector3.Lerp(gameObject.transform.position, machine.transform.position, 0.2f));
         line.GetComponent<LineRenderer>().SetPosition(2, machine.transform.position);
+        */
+        GameObject line = Instantiate(ConnectLine);
+        line.transform.parent = transform;
+        line.transform.localPosition = Vector3.zero;
+        line.GetComponent<GenerateBullet>().End = machine.transform.position;
 
-        //machine.transform.parent = line.transform;
+
     }
 
     private void RemoveConnectLine(GameObject machine) {
