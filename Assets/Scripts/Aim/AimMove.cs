@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class AimMove : MonoBehaviour {
 
+    enum Direction {
+        Up,
+        Down,
+        Right,
+        Left,
+    }
+
     public float PositionOffset = 0.375f;
     public float Speed;
 
-    //private GameManager _manager;
+    private GameManager _manager;
 
 	void Start () {
-        //_manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _manager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 	
 	void Update () {
@@ -36,5 +43,14 @@ public class AimMove : MonoBehaviour {
 
     public void Aim() {
 
+    }
+
+    void Move(Direction dir)
+    {
+
+        _manager.AllMachines.FindAll(x => {
+            return x.transform.position.y > transform.position.y;
+         });
+        
     }
 }
