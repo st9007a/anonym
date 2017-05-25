@@ -24,10 +24,6 @@ public class GameManager : MonoBehaviour {
         TriggerScene();
     }
 
-    // Update is called once per frame
-    void Update () {
-	}
-
     private void TriggerScene() {
         GameObject aim = Instantiate(Aim);
         aim.GetComponent<AimMove>().Aim(AllMachines[0]);
