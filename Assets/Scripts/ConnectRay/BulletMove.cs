@@ -8,14 +8,7 @@ public class BulletMove : MonoBehaviour {
     public float Speed;
 
 	void Start () {
-        Vector3 dir = End;
-
         transform.localRotation = Quaternion.LookRotation(Vector3.up, End);
-            /*= Quaternion.Euler(
-            GetAngle(new Vector2(1, 0), new Vector2(dir.y, dir.z)),
-            GetAngle(new Vector2(0, 0), new Vector2(dir.x, dir.z)),
-            GetAngle(new Vector2(0, 1), new Vector2(dir.x, dir.y))
-        );*/
 	}
 	
 	void Update () {

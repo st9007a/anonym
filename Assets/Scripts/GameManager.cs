@@ -29,7 +29,8 @@ public class GameManager : MonoBehaviour {
 	}
 
     private void TriggerScene() {
-        Instantiate(Aim);
+        GameObject aim = Instantiate(Aim);
+        aim.GetComponent<AimMove>().Aim(AllMachines[0]);
     }
 
     private void CreateMachines() {
