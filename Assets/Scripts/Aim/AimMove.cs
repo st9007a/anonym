@@ -34,15 +34,19 @@ public class AimMove : MonoBehaviour {
         {
             Move(Direction.Right);
         }
-        else if (Input.GetKeyDown("up")) {
+        else if (Input.GetKeyDown("up"))
+        {
             Move(Direction.Up);
         }
 	}
 
-    public void Aim(GameObject machine) {
-        _aimMachinePos = machine.transform.position;
+    public void Aim(GameObject machine =  null) {
+        if (machine != null)
+        {
+            _aimMachinePos = machine.transform.position;
+        }
         Camera.main.GetComponent<CameraMove>().Move(_aimMachinePos);
-        transform.position = Vector3.Lerp(_aimMachinePos, _aimMachinePos + Camera.main.GetComponent<CameraMove>().OriginPos, PositionOffset);
+        transform.position = Vector3.Lerp(_aimMachinePos, _aimMachinePos + Camera.main.GetComponent<CameraMove>().Scale, PositionOffset);
         
     }
 
