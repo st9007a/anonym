@@ -41,8 +41,8 @@ public class AimMove : MonoBehaviour {
 
     public void Aim(GameObject machine) {
         _aimMachinePos = machine.transform.position;
-        Camera.main.transform.position = _aimMachinePos + new Vector3(0, 8, 6);
-        transform.position = Vector3.Lerp(_aimMachinePos, Camera.main.transform.position, PositionOffset);
+        Camera.main.GetComponent<CameraMove>().Move(_aimMachinePos);
+        transform.position = Vector3.Lerp(_aimMachinePos, _aimMachinePos + Camera.main.GetComponent<CameraMove>().OriginPos, PositionOffset);
         
     }
 
