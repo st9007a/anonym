@@ -9,11 +9,9 @@ public class CameraMove : MonoBehaviour {
 
     private Vector3 _aimMachinePos;
     private float _speed;
-    private bool _isMoving;
 
     private Vector3[] _scaleOption = new Vector3[3];
     private int _scaleStage;
-    private bool _isScaling;
 
     void Awake () {
 
@@ -25,23 +23,18 @@ public class CameraMove : MonoBehaviour {
 	}
 
 	void Update () {
-        if (Input.GetKeyDown("tab") && !_isMoving) {
+        if (Input.GetKeyDown("tab"))
+        {
             Scale = _scaleOption[_scaleStage = (_scaleStage + 1) % 3];
-            transform.position = _aimMachinePos + Scale;
             GameObject.Find("Aim(Clone)").GetComponent<AimMove>().Aim();
         }
+           
+        transform.position = Vector3.MoveTowards(transform.position, _aimMachinePos + Scale, _speed * Time.deltaTime);            
 
-        transform.position = Vector3.MoveTowards(transform.position, _aimMachinePos + Scale, _speed * Time.deltaTime);
-
-        if (transform.position == _aimMachinePos + Scale) {
-            _isMoving = false;
-        }
     }
 
     public void Move(Vector3 pos) {
         _aimMachinePos = pos;
         _speed = Vector3.Distance(transform.position, _aimMachinePos + Scale) / MoveDuration;
-        _isMoving = true;
-
     }
 }
