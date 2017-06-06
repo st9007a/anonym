@@ -22,15 +22,11 @@ public class Aiming : MonoBehaviour {
         Debug.DrawRay(_detector.origin, _detector.direction * 15, Color.red);
 
         if (Physics.Raycast(_detector, out hit)) {
-            if (_aimedMachine == null && hit.collider.tag == "Ray") {
+            if (_aimedMachine != hit.collider.gameObject) {
                 _aimedMachine = hit.collider.gameObject;
                 _aimedMachine.transform.GetChild(0).GetComponent<Animator>().SetTrigger("Aimed");
-                
             }
         }
-        else {
-            if (_aimedMachine != null)
-                _aimedMachine = null;
-        }
+
 	}
 }
