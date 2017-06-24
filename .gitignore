@@ -34,3 +34,6 @@ sysinfo.txt
 *.unitypackage
 
 *.htm
+
+# Visual Studio Code
+/.vscode/
